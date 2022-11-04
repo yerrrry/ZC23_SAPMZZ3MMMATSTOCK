@@ -1,0 +1,135 @@
+<mvc:View
+    controllerName="zc23matstock.controller.List"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fiori="sap.ui.webc.fiori"
+	xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:mvc="sap.ui.core.mvc">
+
+    <semantic:SemanticPage
+        id="listPage"
+        preserveHeaderStateOnScroll="true"
+        toggleHeaderOnTitleClick="false">
+        <semantic:titleHeading>
+            <Title
+                id="listPageTitle"
+                text="{listView>/title}"
+                level="H2"/>
+        </semantic:titleHeading>
+        <semantic:content>
+            <!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+            <List
+                id="list"
+                width="auto"
+                class="sapFDynamicPageAlignContent"
+                items="{
+                    path: '/MatStockListSet',
+                    sorter: {
+                        path: 'Zmatnr', 
+                        descending: false
+                    },
+                    groupHeaderFactory: '.createGroupHeader'
+                }"
+                busyIndicatorDelay="{listView>/delay}"
+                noDataText="{listView>/noDataText}"
+                mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished"
+                selectionChange=".onSelectionChange">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <SearchField
+                            id="searchField"
+                            onLiveChange="true"
+                            showRefreshButton="false"
+                            placeholder="Material Code"
+                            nableSuggestions="true"
+                            tooltip="{i18n>listSearchTooltip}"
+                            search=".onSearch"
+                            width="auto"
+                            suggest=".onSuggest"
+                            suggestionItems="{
+                                path: '/ProductCollection',
+                                sorter: { path: 'Name' }
+                            }">
+                            <SuggestionItem 
+                                text="{Name}" 
+                                description="{path:'Price'} {path:'CurrencyCode'}" 
+                                key="{ProductId}" />
+
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    minWidth="150px"
+                                    maxWidth="240px"
+                                    shrinkable="true"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                        <SearchField
+                            id="searchField2"
+                            showRefreshButton="false"
+                            placeholder="Material Name"
+                            tooltip="{i18n>listSearchTooltip}"
+                            search=".onSearch2"
+                            width="auto">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    minWidth="150px"
+                                    maxWidth="240px"
+                                    shrinkable="true"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                        <SearchField
+                            id="searchField3"
+                            showRefreshButton="false"
+                            placeholder="Material Type"
+                            tooltip="{i18n>listSearchTooltip}"
+                            search=".onSearch3"
+                            width="auto">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    minWidth="150px"
+                                    maxWidth="240px"
+                                    shrinkable="true"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                        <ToolbarSpacer/>
+                        <!-- <SearchField
+                            id="searchField3"
+                            showRefreshButton="true"
+                            tooltip="{i18n>listSearchTooltip}"
+                            search=".onSearch"
+                            width="auto">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    minWidth="150px"
+                                    maxWidth="240px"
+                                    shrinkable="true"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField> //toolbar spacer 다음에 넣으면 search field가 우측에 붙음 -->
+                        
+                        <Button
+                            id="sortButton"
+                            press=".onOpenViewSettings"
+                            icon="sap-icon://sort"
+                            type="Transparent"/>
+
+                    </OverflowToolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem
+                        type="Navigation"
+                        press=".onSelectionChange"
+                        title="{Zmatnr}"
+                         />
+                </items>
+            </List>
+        </semantic:content>
+    </semantic:SemanticPage>
+</mvc:View>

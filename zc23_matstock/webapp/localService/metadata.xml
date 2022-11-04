@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW23_MATSTOCK_01_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="MatList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zmatnr"/>
+                </Key>
+                <Property Name="Zmatnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zlifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="공급업체 계정번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmatname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="자재명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmattype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="자재타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zoprice" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="3" sap:unicode="false" sap:unit="Waers" sap:label="원가" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityType Name="StockList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zmatnr"/>
+                </Key>
+                <Property Name="Zmatnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmatname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="자재명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zplant" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="플랜트코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zslocode" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="저장위치코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zrestock" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="잔여수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsafstock" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="안전재고량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmquan" Type="Edm.Decimal" Nullable="false" Precision="4" Scale="0" sap:unicode="false" sap:unit="Meins" sap:label="수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="VendorList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zlifnr"/>
+                </Key>
+                <Property Name="Zlifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="공급업체 계정번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zname1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="이름" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zcity" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="도시" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zregio" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="지역(시군구)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zstreet" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="주소" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PlantList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zplant"/>
+                </Key>
+                <Property Name="Zplant" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="플랜트코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zplname" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="플랜트명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zpladdress" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="플랜트주소" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BomList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zbomnum"/>
+                    <PropertyRef Name="Zmatnr"/>
+                </Key>
+                <Property Name="Zbomnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BOM 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zboinum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="품목번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zbomtype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="BOM 유형" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmatnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zstancons" Type="Edm.Decimal" Nullable="false" Precision="1" Scale="0" sap:unicode="false" sap:unit="Meins" sap:label="표준소모량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Zoprice" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="3" sap:unicode="false" sap:unit="Waers" sap:label="원가" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityType Name="MatStockList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zmatnr"/>
+                </Key>
+                <Property Name="Zmatnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zlifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="공급업체 계정번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmatname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="자재명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmattype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="자재타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zoprice" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="3" sap:unicode="false" sap:unit="Waers" sap:label="원가" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Zplant" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="플랜트코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zslocode" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="저장위치코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zrestock" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="잔여수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsafstock" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="안전재고량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmquan" Type="Edm.Decimal" Nullable="false" Precision="4" Scale="0" sap:unicode="false" sap:label="수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zname1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="이름" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zcity" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="도시" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zregio" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="지역(시군구)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zstreet" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="주소" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zbomnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BOM 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zboinum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="품목번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zbomtype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="BOM 유형" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zstancons" Type="Edm.Decimal" Nullable="false" Precision="1" Scale="0" sap:unicode="false" sap:unit="Meins" sap:label="표준소모량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Zplname" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="플랜트명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZGW23_MATSTOCK_01_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MatListSet" EntityType="ZGW23_MATSTOCK_01_SRV.MatList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="StockListSet" EntityType="ZGW23_MATSTOCK_01_SRV.StockList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VendorListSet" EntityType="ZGW23_MATSTOCK_01_SRV.VendorList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PlantListSet" EntityType="ZGW23_MATSTOCK_01_SRV.PlantList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BomListSet" EntityType="ZGW23_MATSTOCK_01_SRV.BomList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MatStockListSet" EntityType="ZGW23_MATSTOCK_01_SRV.MatStockList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGW23_MATSTOCK_01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGW23_MATSTOCK_01_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,209 @@
+<mvc:View
+    controllerName="zc23matstock.controller.Detail"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:uxap="sap.uxap"
+    xmlns:f="sap.ui.layout.form"
+    >
+
+    <semantic:SemanticPage
+        id="detailPage"
+        busy="{detailView>/busy}"
+        busyIndicatorDelay="{detailView>/delay}">
+        <semantic:titleHeading>
+            <Title
+                text="{Zmatnr}"
+                level="H1"/>
+        </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <ObjectAttribute title="{Zmatname}"/>
+            <!-- <ObjectNumber /> -->
+        </semantic:headerContent>
+
+        <semantic:headerContent>
+            <ObjectAttribute title="공급업체 "
+                             text="{Zname1} {Zlifnr}"/>
+        </semantic:headerContent>
+
+        <semantic:headerContent>
+            <ObjectAttribute text="{Zstreet}"/>           
+        </semantic:headerContent>
+
+        <semantic:headerContent>
+            <ObjectAttribute text="{Ztelp1}"/>           
+        </semantic:headerContent>
+
+        <semantic:content>
+
+        <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+            <uxap:sections>
+            
+                <uxap:ObjectPageSection titleUppercase="false" title="차트">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection titleUppercase="false">
+                            <uxap:blocks>                  
+                                <Text text="차트" />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+                <uxap:ObjectPageSection titleUppercase="false" title="입고 기록">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection titleUppercase="false">
+                            <uxap:blocks>                  
+                                <Table id="table1" items= '{/GoodsReceiptSet}' noDataText="입고 기록 없음" >
+                                    <columns>
+                                        <Column
+                                            width="6em">
+                                            <Text text="입고번호" />
+                                        </Column>
+                                        
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                            hAlign="End">
+                                            <Text text="자재코드" />
+                                        </Column>
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                            hAlign="Center">
+                                            <Text text="플랜트" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="저장위치" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="수량" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="단위" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="입고일" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <ObjectIdentifier
+                                                    title="{Zgrnum}"
+                                                    text="{Zponum}"/>
+                                                
+                                                <Text text="{Zmatnr}" />       
+                                                <Text text="{Zplant}" />
+                                                <Text text="{Zslocode}"/>
+                                                <Text text="{Zmquan}"/>
+                                                <Text text="{Meins}"/>
+                                                <Text text="{Zdldate}"/>                                           
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+                <uxap:ObjectPageSection titleUppercase="false" title="출고 기록">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection titleUppercase="false">
+                            <uxap:blocks>                  
+                                <Table id="table2" items= '{/OutBoundSet}' noDataText="출고 기록 없음" >
+                                    <columns>
+                                        <Column
+                                            width="6em">
+                                            <Text text="출고번호" />
+                                        </Column>
+                                        
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                            hAlign="End">
+                                            <Text text="자재코드" />
+                                        </Column>
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                            hAlign="Center">
+                                            <Text text="플랜트" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="저장위치" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="수량" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="단위" />
+                                        </Column>
+                                        <Column
+                                            hAlign="End">
+                                            <Text text="출고일" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <ObjectIdentifier
+                                                    title="{Zobnum}"
+                                                    text="{Zdonum}"/>
+                                                
+                                                <Text text="{Zmatnr}" />       
+                                                <Text text="{Zplant}" />
+                                                <Text text="{Zslocode}"/>
+                                                <Text text="{Zmquan}"/>
+                                                <Text text="{Meins}"/>
+                                                <Text text="{Zobdate}"/>                                           
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+            </uxap:sections> 
+        </uxap:ObjectPageLayout>
+
+        </semantic:content>
+        <!--Semantic ShareMenu Buttons-->
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction
+                id="shareEmail"
+                press=".onSendEmailPress"/>
+        </semantic:sendEmailAction>
+
+        <semantic:closeAction>
+            <semantic:CloseAction
+                    id="closeColumn"
+                    press=".onCloseDetailPress"/>
+        </semantic:closeAction>
+
+        <semantic:fullScreenAction>
+            <semantic:FullScreenAction
+                    id="enterFullScreen"
+                    visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+                    press=".toggleFullScreen"/>
+        </semantic:fullScreenAction>
+        <semantic:exitFullScreenAction>
+            <semantic:ExitFullScreenAction
+                    id="exitFullScreen"
+                    visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+                    press=".toggleFullScreen"/>
+        </semantic:exitFullScreenAction>
+
+    </semantic:SemanticPage>
+
+</mvc:View>

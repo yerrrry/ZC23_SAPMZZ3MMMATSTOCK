@@ -1,0 +1,144 @@
+{
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "zc23matstock",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:listdetail",
+      "version": "1.8.0",
+      "toolsId": "437e9685-c897-4d3c-a92e-3ac42b32cd54"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGW23_MATSTOCK_01_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.71.24",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zc23matstock.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "viewPath": "zc23matstock.view",
+        "controlId": "layout",
+        "controlAggregation": "beginColumnPages",
+        "bypassed": {
+          "target": [
+            "notFound"
+          ]
+        },
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "list",
+          "target": "list"
+        },
+        {
+          "pattern": "MatStockListSet/{objectId}",
+          "name": "object",
+          "target": [
+            "list",
+            "object"
+          ]
+        }
+      ],
+      "targets": {
+        "list": {
+          "viewName": "List",
+          "viewLevel": 1,
+          "viewId": "list"
+        },
+        "object": {
+          "viewName": "Detail",
+          "viewId": "detail",
+          "viewLevel": 1,
+          "controlAggregation": "midColumnPages"
+        },
+        "detailObjectNotFound": {
+          "viewName": "DetailObjectNotFound",
+          "viewId": "detailObjectNotFound",
+          "controlAggregation": "midColumnPages"
+        },
+        "notFound": {
+          "viewName": "NotFound",
+          "viewId": "notFound"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zc23matstock.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}
